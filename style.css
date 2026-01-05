@@ -4,6 +4,11 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+#timer{
+  text-align: center;
+  font-size: xx-large;
+}
+
 h1 {
   text-align: center;
 }

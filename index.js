@@ -47,6 +47,9 @@ const questions = [
     answer: 4,
   },
 ];
+
+let timeLeft = 300;
+let timerInterval;
 const question = document.querySelector("#questions");
 const btn = document.querySelector("#button");
 const options = document.querySelector("#options");
@@ -67,7 +70,7 @@ function displayQuestionsAndOptions() {
     const input = document.createElement("input");
     input.type = "radio";
     input.name = "question-" + index;
-    input.value = i + 1 ;
+    input.value = i + 1;
     input.classList.add("radio");
     li.appendChild(input);
     li.appendChild(document.createTextNode(" " + questions[index].options[i]));
@@ -76,6 +79,23 @@ function displayQuestionsAndOptions() {
 }
 
 displayQuestionsAndOptions();
+startTimer();  
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      showResult();
+      return;
+    }
+    timeLeft--;
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById("timer").textContent = `time: ${minutes}:${
+      seconds < 10 ? "0" : ""
+    }${seconds}`;
+  }, 1000);
+}
 
 let score = 0;
 
@@ -115,6 +135,8 @@ btn.addEventListener("click", function () {
 function showResult() {
   question.innerHTML = "";
   options.innerHTML = "";
+
+  clearInterval(timerInterval);
 
   const maxScore = questions.length * 4;
   let finalScore = score;
