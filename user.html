@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User details</title>
+    <link rel="stylesheet" href="./user.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Instructions</h1>
+      <ol>
+        <li>All questions aren't neccessary</li>
+        <li>you need to fill your name and roll no</li>
+        <li>there are 15 questions in every mode</li>
+        <li>each question contains 4 options</li>
+        <li>you can only select only one option</li>
+      </ol>
+
+      <h2>Choose the difficulty level</h2>
+
+      <div class="mode">
+        <label for="#"
+          ><input type="radio" name="mode" value="Easy" /> Easy</label
+        >
+        <label for="#"
+          ><input type="radio" name="mode" value="Medium" /> Medium</label
+        >
+        <label for="#"
+          ><input type="radio" name="mode" value="Hard" /> Hard</label
+        >
+      </div>
+      <div class="input-container">
+        <input id="name" type="text" placeholder="Type your name" />
+        <input id="roll-no" type="text" placeholder=" Roll no" />
+        <button id="start">Start</button>
+      </div>
+      <div id="alret-div"></div>
+    </div>
+
+    <script src="./user.js"></script>
+  </body>
+</html>
