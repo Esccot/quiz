@@ -82,6 +82,16 @@ footer{
     text-align: center;
 }
 
+#leader{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text{
+  display: flex;
+  justify-content: space-between;
+}
 
 @media (max-width: 600px){
     .quiz-container{
