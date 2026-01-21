@@ -121,8 +121,9 @@ function displayQuestionsAndOptions() {
     questions for options and check the length of options and that is the ending point
      after that increment in the i that is i++*/
 
-    const li = document.createElement("li");
+    const div = document.createElement("div");
     //dynamically created an element list and stored it
+    div.classList.add("options-div");
 
     const input = document.createElement("input");
     //dynamically created an element input and stored it
@@ -140,11 +141,18 @@ function displayQuestionsAndOptions() {
     input.classList.add("radio");
     // added a class for styling it later
 
-    li.appendChild(input);
-    li.appendChild(document.createTextNode(" " + questions[index].options[i]));
+    div.appendChild(input);
+    div.appendChild(document.createTextNode(" " + questions[index].options[i]));
     /*appended a text node cause dom always needs a node I used [i] cause
     we want the one option at a time  */
-    options.appendChild(li);
+    options.appendChild(div);
+    div.addEventListener("click", () => {
+      document.querySelectorAll("div").forEach((opt) => {
+        opt.classList.remove("toggle-class");
+      });
+
+      div.classList.add("toggle-class");
+    });
   }
 }
 
@@ -180,9 +188,13 @@ function startTimer() {
     //figure out this yourself 😪😴
     const seconds = timeLeft % 60;
     // this too 😪😴
-    document.getElementById("timer").textContent = `Time: ${minutes}:${
-      seconds < 10 ? "0" : ""
-    }${seconds}`;
+    let time = document.getElementById("timer");
+    time.textContent = `Time: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    if (timeLeft < 30) {
+      time.style.color = "red";
+    } else {
+      time.style.color = "black";
+    }
   }, 1000);
 }
 
@@ -193,7 +205,7 @@ let score = 0;
 
 function calculateScore() {
   const selectedOption = document.querySelector(
-    'input[name="question-' + index + '"]:checked'
+    'input[name="question-' + index + '"]:checked',
   );
   /*this is just selecting the input we created and javascript will check is this 
   selected or not  */
@@ -245,6 +257,8 @@ btn.addEventListener("click", function () {
 function showResult() {
   question.innerHTML = "";
   options.innerHTML = "";
+  let time = document.querySelector("#timer");
+  time.innerHTML = "";
   // before showing result clear the questions and options
 
   clearInterval(timerInterval);
